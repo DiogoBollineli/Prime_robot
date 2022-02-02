@@ -3,7 +3,7 @@
 Documentation            Esse será nosso gerenciador de dependencias.
 
 Library                  SeleniumLibrary
-
+Library                  RequestsLibrary
 
 ##########################
 #        keywords        #

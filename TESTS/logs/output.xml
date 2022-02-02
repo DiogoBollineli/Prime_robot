@@ -1,161 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.10.2 on win32)" generated="20220131 20:34:44.568" rpa="false" schemaversion="2">
-<suite id="s1" name="Webatomation" source="C:\Users\diogo\Desktop\curso robot\TESTS\features\webatomation.robot">
-<test id="s1-t1" name="cenario: Criar usuário através da sessão de lista de novos usuários">
-<kw name="abrir navegador" library="hooks" type="SETUP">
-<kw name="Open Browser" library="SeleniumLibrary">
-<arg>about:blank</arg>
-<arg>chrome</arg>
-<arg>options=add_experimental_option('excludeSwitches', ['enable-logging'])</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220131 20:34:44.778" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
-<status status="PASS" starttime="20220131 20:34:44.778" endtime="20220131 20:34:46.180"/>
+<robot generator="Robot 4.1 (Python 3.10.2 on win32)" generated="20220201 21:39:14.861" rpa="false" schemaversion="2">
+<suite id="s1" name="Apiautomation" source="C:\Users\diogo\Desktop\Prime_robot\TESTS\features\apiautomation.robot">
+<test id="s1-t1" name="Cenario: Realizar a consulta de livros">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>booksAPI</arg>
+<arg>https://fakerestapi.azurewebsites.net/api/v1</arg>
+<arg>disable_warnings=${True}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20220201 21:39:15.177" level="INFO">Creating Session using : alias=booksAPI, url=https://fakerestapi.azurewebsites.net/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20220201 21:39:15.176" endtime="20220201 21:39:15.178"/>
 </kw>
-<kw name="Maximize Browser Window" library="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220131 20:34:46.180" endtime="20220131 20:34:46.298"/>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${HEADERS}</var>
+<arg>content-type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220201 21:39:15.178" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20220201 21:39:15.178" endtime="20220201 21:39:15.178"/>
 </kw>
-<kw name="Go To" library="SeleniumLibrary">
-<arg>https://automacaocombatista.herokuapp.com/users</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220131 20:34:46.298" level="INFO">Opening url 'https://automacaocombatista.herokuapp.com/users'</msg>
-<status status="PASS" starttime="20220131 20:34:46.298" endtime="20220131 20:34:49.348"/>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${HEADERS}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20220201 21:39:15.178" level="INFO">${HEADERS} = {'content-type': 'application/json'}</msg>
+<status status="PASS" starttime="20220201 21:39:15.178" endtime="20220201 21:39:15.178"/>
 </kw>
-<kw name="Set Selenium Timeout" library="SeleniumLibrary">
-<arg>20</arg>
-<doc>Sets the timeout that is used by various keywords.</doc>
-<status status="PASS" starttime="20220131 20:34:49.348" endtime="20220131 20:34:49.350"/>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPOSTA}</var>
+<arg>booksAPI</arg>
+<arg>Books</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20220201 21:39:18.460" level="INFO">GET Request : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ path_url=/api/v1/Books 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220201 21:39:18.460" level="INFO">GET Response : url=https://fakerestapi.azurewebsites.net/api/v1/Books 
+ status=200, reason=OK 
+ headers={'Transfer-Encoding': 'chunked', 'Content-Type': 'application/json; charset=utf-8; v=1.0', 'Server': 'Kestrel', 'api-supported-versions': '1.0', 'Date': 'Wed, 02 Feb 2022 00:39:17 GMT'} 
+ body=[{"id":1,"title":"Book 1","description":"Nonumy sadipscing stet et sit amet elitr et lorem sadipscing. Zzril sit te eirmod dolore sit et takimata feugiat ad stet et duis nostrud facilisis nonumy laoreet et. Et eirmod sit iriure esse tempor kasd odio voluptua et nulla consetetur at amet ut. Invidunt lorem at ea eos et justo. Et dolor eos ipsum et sanctus ullamcorper commodo dolor consetetur. Accusam option justo eirmod dolor tincidunt aliquyam invidunt ea et justo dolor justo stet. Elitr sed dolor ut diam sea rebum. Facilisis ut autem consectetuer no eirmod eirmod sanctus no aliquyam. Ea dolore esse consetetur vero. In elitr lorem facilisi dolor ut diam molestie soluta ad veniam tempor wisi in dolor. Sadipscing vulputate dolor accusam. Lorem ut diam. Kasd gubergren at. Elit facilisis zzril in sadipscing quod et gubergren ea. Illum amet ipsum sanctus at nulla. Exerci nonumy sed sadipscing eirmod dolore elitr diam gubergren eirmod diam voluptua in. Sed rebum sit eos eirmod. Dolores facilisis et magna sit erat sed diam diam amet dolor kasd lorem duis dolore consetetur gubergren vero. Nulla vero dolore no tempor gubergren et eos clita diam dolore aliquyam labore eirmod.\n","pageCount":100,"excerpt":"Et takimata nobis stet gubergren qui ipsum aliquyam et elitr aliquyam sea ea duo rebum. Autem delenit at at. Volutpat eum est sit takimata. Et consetetur elit rebum eos sed elitr in tempor sea sanctus dolore clita accusam justo liber ad congue consetetur. Eum voluptua aliquyam illum. Wisi illum invidunt sit sed magna amet lorem magna invidunt invidunt magna sed vero aliquyam takimata amet diam. Labore ex et dolor amet kasd labore sanctus dolor lorem sit diam ea rebum elitr laoreet clita. Lorem tincidunt imperdiet veniam. Sanctus justo dolore magna dolor euismod ea sit dolores lorem labore dolor esse invidunt amet ipsum iusto. Vero ipsum sanctus voluptua nonummy est et ut et dolores sit diam dolores praesent lorem. Vero lorem duo aliquyam luptatum amet eirmod ipsum illum sed aliquyam dolor eos in.\nSit dolores et quis nonumy amet aliquam autem takimata eleifend gubergren dolor amet. Ex invidunt consetetur kasd. Feugait erat mazim nostrud at gubergren takimata nisl in at sit feugiat at duo adipiscing. Sit autem sed et at ad facer eos dolores sanctus. Lorem et accumsan minim cum. Erat sea justo sea lorem dolor qui dolore kasd et accusam amet duo et vel consequat diam ea. Dolores lorem et elitr. Ut iriure justo. Sea ipsum feugiat clita hendrerit euismod minim nostrud nostrud ea magna nihil sadipscing sit vel molestie magna sed. Et erat dolore est sadipscing odio dolor sea no et sed vero consetetur sed illum vero ad esse. Ipsum clita molestie eirmod vero dolore ipsum clita eum ipsum tempor nulla facilisis hendrerit nihil et diam gubergren.\nGubergren diam volutpat accusam vel consequat ut lorem illum nulla diam. Lorem kasd at. Et elitr vero et diam sadipscing sed gubergren accusam. Consequat ea delenit volutpat feugait ea dolor sed eu clita. Magna nostrud eirmod amet. At amet accusam duo feugiat ea enim sadipscing diam lorem erat at ut dolores diam exerci. Invidunt stet diam tation invidunt. Stet dolores accusam. Stet et et dolor ut nonumy at duis. Eirmod ipsum aliquyam justo dolore erat diam no clita elitr illum. Lorem lorem magna in sit ea ut voluptua amet.\nTakimata lorem justo duo esse et consequat facer lorem velit lorem accusam dolor takimata dolor sed invidunt sit diam. Id nulla aliquyam consequat aliquyam sed nisl. Lorem labore ut in clita dolor lorem ea rebum lobortis commodo sea et sit vulputate rebum amet. Labore et amet takimata sanctus elit iriure at facilisis lorem et est clita ea rebum ut invidunt facilisi erat. No sit dolor molestie ea amet erat luptatum no nulla et et nonumy. Ut aliquam labore sit sea vero et diam quod sanctus vero ut in stet in.\nDuo labore lorem voluptua labore dolore sit. Tincidunt sit consetetur et. Dolores no et et sea voluptua justo. Et esse rebum. Stet aliquyam stet magna nulla elitr takimata sit. Consequat magna eos. Invidunt sanctus odio invidunt molestie consetetur eirmod labore voluptua nonumy et quod dolores erat erat et. Accusam erat tempor est sit erat et. Magna no tempor ipsum in ut nonummy in sed et lorem augue esse quod sed. Sit autem diam congue aliquyam ut augue facilisi erat dolor dolor dolore justo at ut et takimata dolor. Ut ut vero ut. Est et nisl takimata rebum no invidunt dolor nulla ad ipsum ut. Labore at diam duis ipsum ea exerci vulputate sit vero ut tempor ut at in. Sanctus dolore sed kasd dolores feugait ipsum et in. Et kasd et lorem invidunt et dolore eirmod laoreet et et ut tempor.\n","publishDate":"2022-02-01T00:39:17.3093927+00:00"},{"id":2,"title":"Book 2","description":"Dolore feugait sed lorem et stet blandit erat feugait accusam. Id stet dolor voluptua kasd. Est lorem ipsum sadipscing vero sed ut elit dolore sit dolor duo invidunt dolore assum esse ea invidunt. Tation ea volutpat. Ipsum tempor iusto soluta esse dolor duo quis dolor clita nonummy justo. No ipsum hendrerit nisl sanctus hendrerit magna dolor ea kasd eos possim ea est dolore. Diam justo nonumy dolor elitr sit sanctus velit lobortis ut labore accusam invidunt vero takimata diam.\n","pageCount":200,"excerpt":"No adipiscing minim enim sit sed diam amet stet feugait lorem rebum et iriure tempor. Stet eos at amet vero stet stet takimata amet accusam nostrud vero duis gubergren. Dolore diam rebum ullamcorper adipiscing elit nulla et ipsum stet. At illum consequat dolor et ullamcorper et odio ipsum labore elit. Dolore duo justo sanctus ut. Eu ea no gubergren diam et eos dolor dolore et dolore laoreet amet. Molestie amet eirmod luptatum assum ut dolor lorem lorem sed vero dignissim. Sed consequat iriure amet clita gubergren dolore sit zzril labore ea at dolore laoreet dolores sadipscing illum eirmod duis. Diam voluptua tempor magna ex dolores molestie nulla dolore tation invidunt iusto assum dolore amet magna no.\nNulla ut diam takimata diam eos sadipscing duo diam ut takimata accusam diam gubergren vulputate. Sit quis clita diam id vel. Duo lorem magna veniam dolor hendrerit nulla ea ut autem luptatum eu no aliquyam justo gubergren sea. Amet ipsum elitr at vulputate stet diam dolor tempor consetetur takimata dolor takimata dolore lorem. Elitr invidunt aliquyam elit vulputate imperdiet eirmod dolor laoreet sed takimata erat vero duis magna justo lorem. Gubergren facilisi et iriure eirmod duo elit consectetuer tempor duo exerci liber. Sanctus duis qui tempor blandit congue duis molestie nonumy sit dolor et et diam duis iriure. Stet tempor veniam ut amet nihil lorem justo ipsum clita sit est. Lorem aliquyam dolores et sit eleifend vero imperdiet ipsum aliquyam sea labore nam sea. Accusam amet sed amet sadipscing autem eirmod magna amet diam est lorem aliquyam dolor ea tempor duis sed sed. Nostrud est et tation et blandit elitr ipsum ad. Sit stet nonumy sed ipsum ipsum consequat amet duis doming. Tincidunt eos gubergren dolor consequat tempor. Consequat justo tempor tempor tincidunt imperdiet elit. Dolores in blandit in sanctus nonumy ipsum nostrud. Eros sed gubergren iusto kasd erat dignissim ut sit sed magna adipiscing eos amet nobis ea et molestie. Sed ea ut sadipscing dolor congue invidunt sadipscing sed lorem ipsum. Nonumy dolore est magna et in accusam dolore wisi nam.\nDolore zzril ipsum consetetur erat dolor at lobortis velit vero labore sed sed consectetuer. At at euismod nonummy magna eum ut sed amet sit accumsan eu nonumy clita clita dolore sit stet. Gubergren dolore amet elitr autem diam eum et nonumy molestie lorem ea dolore lorem. Dolor sit tempor aliquyam ipsum delenit volutpat et ipsum exerci. Lorem nonumy doming voluptua elitr elit sed nulla et magna vel. Amet aliquip takimata augue amet nibh dolor velit sanctus at gubergren et dolor amet suscipit at. Dolore sadipscing elitr lorem sanctus lorem lorem suscipit rebum. Consequat iusto zzril erat nihil duo aliquyam elitr nihil sit ut et magna dolor voluptua sadipscing minim stet. Sed dolor et praesent invidunt ea facilisi nonumy dolores commodo. Ipsum no dolore esse et rebum imperdiet aliquyam erat zzril sanctus tempor clita vel vel hendrerit erat. Diam ut aliquam sed vero esse sed nulla est delenit rebum diam erat. Takimata amet euismod diam accumsan nulla consequat amet minim et dolore rebum ipsum kasd gubergren. Tation quod sed dolor sed. Eum sit labore dolor nisl ex gubergren dolore ea. Tempor gubergren diam nonummy lorem dolores feugiat vel est at eirmod tempor no gubergren. Duo justo justo lorem diam nulla. Dolores ut takimata et sadipscing ea no dolore esse elit est et imperdiet.\nEa eu sadipscing sed sit sadipscing amet erat diam tempor vero at ipsum elit laoreet sed voluptua te et. Clita esse ut tincidunt consequat vero et. Ipsum dolore labore illum diam vel lorem accusam duis kasd adipiscing justo labore consequat consectetuer. Justo justo nonumy et gubergren ut erat et euismod duo vel gubergren kasd amet clita facer est et exerci. Ipsum tation ut justo consetetur nonumy amet autem kasd eu nonummy eos eirmod et odio clita invidunt ut aliquip.\nJusto sanctus et eirmod ad gubergren gubergren amet consetetur duo amet nonumy. Kasd sadipscing vulputate invidunt eos possim aliquyam magna. No nulla eos justo nisl magna et lorem eu nonumy vero et sit dignissim clita magna amet sed at. Et delenit dolore labore sed aliquyam duis vero lorem amet kasd. Et rebum dolor eirmod ea diam sanctus. Et et clita est amet lorem dolor takimata tincidunt est eos exerci dolor consectetuer nonumy amet voluptua diam consetetur. Eirmod sea est ad feugiat te invidunt tempor. Autem dolores diam et rebum sit sadipscing stet sea ea. Accusam sanctus justo consetetur voluptua ea feugiat nonumy at ipsum sanctus vero et duo suscipit. Diam molestie duis nonumy dolor facilisi lorem at eirmod sit velit. Vel amet consequat et est esse ut. Nulla gubergren lorem no sed sit clita suscipit nulla sadipscing aliquyam ipsum velit dolore nonumy at. Eu et feugiat at eum takimat... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg timestamp="20220201 21:39:18.461" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220201 21:39:15.179" endtime="20220201 21:39:18.461"/>
 </kw>
-<status status="PASS" starttime="20220131 20:34:44.777" endtime="20220131 20:34:49.350"/>
+<kw name="Set Task Variable" library="BuiltIn">
+<arg>${RESPOSTA}</arg>
+<doc>Makes a variable available everywhere within the scope of the current task.</doc>
+<msg timestamp="20220201 21:39:18.462" level="INFO">${RESPOSTA} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220201 21:39:18.462" endtime="20220201 21:39:18.462"/>
 </kw>
-<kw name="Dado que eu esteja na tela de lista de usuários" library="kws_web">
-<kw name="Title Should Be" library="SeleniumLibrary">
-<arg>Automação com Batista</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220131 20:34:49.356" level="INFO">Page title is 'Automação com Batista'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.351" endtime="20220131 20:34:49.356"/>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20220201 21:39:18.464" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20220201 21:39:18.463" endtime="20220201 21:39:18.464"/>
 </kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), "Lista de Usuários!!")]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20220131 20:34:49.356" endtime="20220131 20:34:49.378"/>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPOSTA.reason}</arg>
+<arg>OK</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20220201 21:39:18.464" endtime="20220201 21:39:18.466"/>
 </kw>
-<status status="PASS" starttime="20220131 20:34:49.350" endtime="20220131 20:34:49.378"/>
-</kw>
-<kw name="E clique na opção NOVO USUÁRIO" library="kws_web">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), "Novo Usuário")]</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.379" level="INFO">Clicking element 'xpath=//*[contains(text(), "Novo Usuário")]'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.378" endtime="20220131 20:34:49.417"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), "Novo Usuário!!")]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20220131 20:34:49.417" endtime="20220131 20:34:49.668"/>
-</kw>
-<status status="PASS" starttime="20220131 20:34:49.378" endtime="20220131 20:34:49.668"/>
-</kw>
-<kw name="Quando finalizar o cadastro preenchendo todos os campos" library="kws_web">
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_name</arg>
-<arg>${NOVO_USUARIO.nome}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.670" level="INFO">Typing text 'Diogo' into text field 'id=user_name'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.669" endtime="20220131 20:34:49.735"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_lastname</arg>
-<arg>${NOVO_USUARIO.ult_nome}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.736" level="INFO">Typing text 'Bollineli' into text field 'id=user_lastname'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.735" endtime="20220131 20:34:49.805"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_email</arg>
-<arg>${NOVO_USUARIO.email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.806" level="INFO">Typing text 'diogo.teste@robot.com' into text field 'id=user_email'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.805" endtime="20220131 20:34:49.886"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_address</arg>
-<arg>${NOVO_USUARIO.endereco}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.886" level="INFO">Typing text 'rua antonio calheiro rodrigues' into text field 'id=user_address'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.886" endtime="20220131 20:34:49.978"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_university</arg>
-<arg>${NOVO_USUARIO.universidade}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:49.979" level="INFO">Typing text 'PUCPR' into text field 'id=user_university'.</msg>
-<status status="PASS" starttime="20220131 20:34:49.978" endtime="20220131 20:34:50.043"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_profile</arg>
-<arg>${NOVO_USUARIO.profissao}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:50.044" level="INFO">Typing text 'analista QA' into text field 'id=user_profile'.</msg>
-<status status="PASS" starttime="20220131 20:34:50.043" endtime="20220131 20:34:50.112"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_gender</arg>
-<arg>${NOVO_USUARIO.genero}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:50.112" level="INFO">Typing text 'masculino' into text field 'id=user_gender'.</msg>
-<status status="PASS" starttime="20220131 20:34:50.112" endtime="20220131 20:34:50.179"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>id=user_age</arg>
-<arg>${NOVO_USUARIO.idade}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:50.180" level="INFO">Typing text '19' into text field 'id=user_age'.</msg>
-<status status="PASS" starttime="20220131 20:34:50.180" endtime="20220131 20:34:50.237"/>
-</kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>xpath=//input[@value='Criar']</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220131 20:34:50.237" level="INFO">Clicking button 'xpath=//input[@value='Criar']'.</msg>
-<status status="PASS" starttime="20220131 20:34:50.237" endtime="20220131 20:34:51.379"/>
-</kw>
-<status status="PASS" starttime="20220131 20:34:49.669" endtime="20220131 20:34:51.379"/>
-</kw>
-<kw name="Então deve ser apresentada a mensagem &quot;Usuário Criado com sucesso&quot;" library="hooks" sourcename="Então deve ser apresentada a mensagem &quot;${ERRO}&quot;">
-<kw name="Wait Until Page Contains" library="SeleniumLibrary">
-<arg>${ERRO}</arg>
-<doc>Waits until ``text`` appears on the current page.</doc>
-<status status="PASS" starttime="20220131 20:34:51.381" endtime="20220131 20:34:51.392"/>
-</kw>
-<status status="PASS" starttime="20220131 20:34:51.380" endtime="20220131 20:34:51.392"/>
-</kw>
-<kw name="fechar navegador" library="hooks" type="TEARDOWN">
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<msg timestamp="20220131 20:34:51.496" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20220131 20:34:51.393" endtime="20220131 20:34:51.497"/>
-</kw>
-<kw name="Close Browser" library="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220131 20:34:51.497" endtime="20220131 20:34:53.678"/>
-</kw>
-<status status="PASS" starttime="20220131 20:34:51.392" endtime="20220131 20:34:53.678"/>
-</kw>
-<tag>Exercicio</tag>
-<status status="PASS" starttime="20220131 20:34:44.777" endtime="20220131 20:34:53.681"/>
+<tag>teste</tag>
+<status status="PASS" starttime="20220201 21:39:15.176" endtime="20220201 21:39:18.466"/>
 </test>
-<doc>Automação web para o curso de robot.</doc>
-<status status="PASS" starttime="20220131 20:34:44.570" endtime="20220131 20:34:53.686"/>
+<doc>Aqui estarão presentes todos os testes de api.</doc>
+<status status="PASS" starttime="20220201 21:39:14.863" endtime="20220201 21:39:18.468"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">Exercicio</stat>
+<stat pass="1" fail="0" skip="0">teste</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Webatomation">Webatomation</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Apiautomation">Apiautomation</stat>
 </suite>
 </statistics>
 <errors>
