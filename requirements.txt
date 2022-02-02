@@ -1,7 +1,7 @@
 robotframework-seleniumlibrary==5.0.0
 
 robotframework-debuglibrary==2.2.2
-
+robotframework-requests==0.92
 robotframework-faker==5.0.0
 
 robotframework-pabot==2.0.1
